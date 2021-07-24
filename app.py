@@ -26,9 +26,13 @@ import matplotlib.pyplot as plt
 # import datasets 
 #######################################################
 
-df = pd.read_pickle('interact')
-library = pd.read_pickle('lib_app')
-rand_book = pd.read_pickle('random_app')
+@st.cache
+def openFile(name):
+    return pd.read_pickle(name)
+
+df = openFile('interact')
+library = openFile('lib_app')
+rand_book = openFile('random_app')
 
 #######################################################
 # Side Bar
@@ -37,7 +41,8 @@ rand_book = pd.read_pickle('random_app')
 st.sidebar.header('Start Here')
 u_name = st.sidebar.text_input('What is your name?', 'Friends')
 choice = st.sidebar.radio('How would you want to rate?', ['Choose for me', 'Choose my own'])
-num = st.sidebar.slider(label='How many books?', min_value=1, max_value=10)
+if choice == "Choose for me":
+    num = st.sidebar.slider(label='How many books?', min_value=1, max_value=10)
 
 
 #######################################################
@@ -57,14 +62,14 @@ Hi, there! My name is Ramil. I create this web app to introduce fantasy book lov
 """)
 
 
-st.write(f'Hi, {u_name}! Please take some time to rate these following books')
+st.write(f'Hello, {u_name}! Please take some time to rate these following books')
 
 if choice == 'Choose for me':
 
 
     #Sample Top Rating books
     lib = rand_book.sample(num).reset_index()
-    entry = defaultdict(int)
+    entry1 = defaultdict(int)
     st.dataframe(lib)
     
     with st.form(key='CFM'):
@@ -79,7 +84,7 @@ if choice == 'Choose for me':
                 avg = lib.loc[i,'average_rating']
                 st.write(f"{title} has an average rating of {avg}")
             
-                entry[int(idx)] = st.select_slider('How would you rate it?', ["Haven't Read", 1, 2 ,3 ,4, 5], key=f'select{i}')
+                entry1[int(idx)] = st.select_slider('How would you rate it?', ["Haven't Read", 1, 2 ,3 ,4, 5], key=f'select{i}')
             with col1:
                 i = lib.loc[i,'image_url']
                 response = requests.get(i)
@@ -90,12 +95,47 @@ if choice == 'Choose for me':
         button1 = st.form_submit_button("Submit")
     
     if button1:
-        st.write(entry)
+        st.write(entry1)
 
 
-if choice == "Choose my own":
-    book_name = library['']
-    entry = defaultdict(int)
+else:
+    book_name = list(set(library['title'].values))
+    entry2 = defaultdict(int)
+    
+    user_select = st.multiselect('Book Name(s)', book_name)
+    lib = library[library['title'].isin(user_select)]
+    st.write(lib)
+
+    with st.form(key='CMO'):
+        col1, col2 = st.beta_columns((1,2))
+        
+
+        for i in range(len(user_select)):
+            
+            with col2:
+                idx = lib.loc[i, 'book_id']
+                title = lib.loc[i, 'title']
+                avg = lib.loc[i,'average_rating']
+                st.write(f"{title} has an average rating of {avg}")
+            
+                entry2[int(idx)] = st.select_slider('How would you rate it?', ["Haven't Read", 1, 2 ,3 ,4, 5], key=f'select{i}')
+            with col1:
+                i = lib.loc[i,'image_url']
+                response = requests.get(i)
+                img = Image.open(BytesIO(response.content))
+                st.image(img)
+        
+        
+        button2 = st.form_submit_button("Submit")
+
+    if button2:
+        st.write(entry2)
+
+
+
+
+
+    '''entry = defaultdict(int)
     with st.form(key='CMO'):
         col1, col2 = st.beta_columns((1,2))
 
@@ -119,7 +159,7 @@ if choice == "Choose my own":
         button2 = st.form_submit_button("Submit")
     
     if button2:
-        st.write(entry)
+        st.write(entry)'''
         #with st.form(key='columns_in_CMO'):
             #cols = st.beta_columns(num)
             #for i, col in enumerate(cols):
