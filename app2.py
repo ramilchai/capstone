@@ -9,6 +9,7 @@ from surprise import Reader, Dataset
 from surprise.prediction_algorithms import SVD
 
 import nltk
+nltk.download('stopwords')
 
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
@@ -16,7 +17,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.tokenize import RegexpTokenizer
 
-nltk.data.path.append('./corpora')
+#nltk.data.path.append('./corpora')
 
 import re
 #import string
