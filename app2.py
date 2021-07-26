@@ -17,7 +17,6 @@ from nltk.tokenize import RegexpTokenizer
 import re
 import string
 import random
-from PIL import Image
 import requests
 from io import BytesIO
 import matplotlib.pyplot as plt
