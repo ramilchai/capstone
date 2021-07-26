@@ -8,11 +8,15 @@ import pandas as pd
 from surprise import Reader, Dataset
 from surprise.prediction_algorithms import SVD
 
+import nltk
+
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
 #from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.tokenize import RegexpTokenizer
+
+nltk.data.path.append('./corpora')
 
 import re
 #import string
