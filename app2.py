@@ -1,25 +1,25 @@
 from collections import defaultdict
-from matplotlib import image
+#from matplotlib import image
 import streamlit as st
 from PIL import Image
 import pandas as pd
-import pickle
+#import pickle
 
 from surprise import Reader, Dataset
 from surprise.prediction_algorithms import SVD
 
 from nltk.corpus import stopwords
-from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+#from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.tokenize import RegexpTokenizer
 
 import re
-import string
-import random
+#import string
+#import random
 import requests
 from io import BytesIO
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 #######################################################
 # Functions
