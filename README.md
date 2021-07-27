@@ -62,7 +62,7 @@ The distribution of rating in our dataset is left-skewed. Majority of users tren
 
 Box plot for user interactions.
 
-![Box_plots](./images/box_users.png)
+![Box_plots](./images/Box_users.png)
 
 As you can see, the medium is 26 reviews per user while the mean is around 57 review per user. The large gap is a result of having some outliers with extremely high numbers of interactions. For example, there is one user rates the total of 733 books; there are a few users rate above 500 books.
 
