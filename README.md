@@ -112,7 +112,7 @@ We can see some similarities between the results of fantasy books and comic book
 
 ## Implementation
 
-We take our finished recommendation system and implement it onto web app using Streamlit. We later deploy it online via Heroku. Please visit our recommendation system web app by following this link--[gr-comic-recommendation.herokuapp.com](https://gr-comic-recommendation.herokuapp.com/). 
+We take our finished recommendation system and implement it onto web app using Streamlit. We later deploy it online via Heroku. Please visit our recommendation system web app by following this link: [gr-comic-recommendation.herokuapp.com](https://gr-comic-recommendation.herokuapp.com/). 
  
 ## For More Information
 
@@ -136,6 +136,7 @@ Ramil Chaimongkolbutr at [ramil.ming@gmail.com](mailto:ramil.ming@gmail.com)
 ├── data
 ├── images
 ├── README.md
+├── app2.py
 ├── capstone_slidedeck.pdf
 ├── recommendation_book.ipynb
 ├── ALS_model.ipynb
