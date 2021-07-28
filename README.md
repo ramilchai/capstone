@@ -117,26 +117,28 @@ We take our finished recommendation system and implement it onto web app using S
 ## For More Information
 
 See full analysis in these following Jupyter Notebooks:
-- [Jupyter Notebook](./phase_4_code.ipynb) 
-- [Jupyter Notebook](./phase_4_code.ipynb)
-- [Jupyter Notebook](./phase_4_code.ipynb)
-- [Jupyter Notebook](./phase_4_code.ipynb)
+1. [recommendation_book](./recommendation_book.ipynb) 
+2. [ALS_model](./ALS_model.ipynb)
+3. [Surprise_Lib](./Surprise_Lib.ipynb)
+4. [Recom_function](./Recom_function.ipynb)
 
-Or check out this [presentation](./phase_4_slidedeck.pdf). 
+Or check out this [presentation](./capstone_slidedeck.pdf). 
 
 For additional info, please contact:  
 Ramil Chaimongkolbutr at [ramil.ming@gmail.com](mailto:ramil.ming@gmail.com)  
 
 
-![Ending](./imgs/endinggif.gif)
+![Ending](./images/bart.gif)
 
 ## Repository Structure
 
 ```
 ├── data
 ├── images
-├── notebooks
 ├── README.md
-├── phase_4_slidedeck.pdf
-└── phase_4_code.ipynb
+├── capstone_slidedeck.pdf
+├── recommendation_book.ipynb
+├── ALS_model.ipynb
+├── Surprise_Lib.ipynb
+├── Recom_function.ipynb
 ```
