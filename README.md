@@ -68,8 +68,9 @@ As you can see, the medium is 26 reviews per user while the mean is around 57 re
 
 ## Methodology
 
-We begin our methodology with filtering data down to more manageable size. We remove unrelated and unsavory genres such as 'Musical', 'Movie','OVA', 'Special', 'ONA', and 'Hentai.' We choose to build our recommendation system using collaborative filtering algorithm. There are two libraries that provide useful built-in machine learning models: ALS from PySpark; SVD from Surprise. These are two models that we rely on heavily.  
+![flowchart](./images/flowchart.png)
 
+We start building up our methodology by down-sizing the interaction dataset to a more manageable size. We choose to build our recommendation system using collaborative filtering algorithm. Matrix Factorization is out go-to class because of its effectiveness. The prediction results can be improved by assigning different regularization weights to the latent factors based on items' popularity and users' activeness. We will use Alternative Least Square (ASL) model from PySpark library as our first simple model.
 
 ## Results
 
