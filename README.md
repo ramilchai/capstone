@@ -72,40 +72,61 @@ As you can see, the medium is 26 reviews per user while the mean is around 57 re
 
 We start building up our methodology by down-sizing the interaction dataset to a more manageable size. We choose to build our recommendation system using collaborative filtering algorithm. Matrix Factorization is out go-to class because of its effectiveness. The prediction results can be improved by assigning different regularization weights to the latent factors based on items' popularity and users' activeness. We will use Alternative Least Square (ASL) model from PySpark library as our first simple model.
 
+After we get our FSM and ALS models up and running. I try to look for options to improve our model. I turn to Singular Value Decomposition (SVD) from Surprise library. The famous SVD algorithm, as popularized by Simon Funk during the Netflix Prize in 2006. 
+
+We finalize our final model based on RMSE (this is also for the consistency among other models). Then, we will build up our recommendation function which takes in a user input and gives out a book recommendation as a prediction.
+
+The method that we use to find similarity between fantasy books and comic books is Cosine Similarity. We take a book description, vectorize it, and calculate cosine similarity between them. Finally, we make recommendations based on the high similarity score of the book. 
+
 ## Results
 
-From ALS model, RMSE is around 5.6.
-From SVD model, RMSE is around 3.1, which is better judging by the number.
+| Model       | RMSE        |
+| :---        |    ---:     |
+| ALS         | 1.093       | 
+| KNNBasic    | 1.002       |
+| KNNBaseline | 0.886       |
+| SVD         | 0.837       |
 
-# Example of results from SVD model:
-We add a new user which some preference.
-![table1](./imgs/input.png)
-
-Here are 5 examples out of the total 10 recommended anime.
-1. Code Geass: Hangyaku no Lelouch R2
-2. Major S6
-3. Death Note
-4. One Punch Man
-5. Black Lagoon: The Second Barrage
-
-From 10 recommended results, we have found that 4 of them are already seen and liked; 2 of them are recommended by other services; 1 is new but recommended by friends; and 3 of them are never heard but promising.
+The result from RMSE suggests us to choose SVD as our final model. We later build a recommendation function out of the final SVD model.
 
 ## Conclusions
 
-- SVD model does the best job with 3.1 RMSE.
-- We are satisfied with the results so far.
+- Our final model is SVD with the lowest RMSE of 0.837. 
+- We are pretty impressed with the results so far. 
+
+### Example of results from our recommendation system:
+
+We randomly add a new user id with some random book rating to the system. Here are some of the results from our recommendation system.
+
+![Results](./images/recom_result.png)
+
+We can see some similarities between the results of fantasy books and comic books. For example, the system recommends "Here at Hogwarts" from the Harry Potter book in fantasy book result. 
+
 
 ## Next Steps
 
-In order to improve results, we might need to break down the data even more. Some anime in the dataset has multiple seasons. Combining them might give a better RMSE score. 
+- If we had more resources and computing power, we could start run on a larger sets of data.
+- We could try on building a recommendation using Neural Network, which might yield a better result.
+- We could try running on even more distinctive groups of data.
+- Online A/B testing might be a better way to evaluate the model. Wayfair is now using this method to evaluate their recommendation system.
+
+## Implementation
+
+We take our finished recommendation system and implement it onto web app using Streamlit. We later deploy it online via Heroku. Please visit our recommendation system web app by following this link--[gr-comic-recommendation.herokuapp.com](https://gr-comic-recommendation.herokuapp.com/). 
  
 ## For More Information
 
-See full analysis in [Jupyter Notebook](./phase_4_code.ipynb) or check out this [presentation](./phase_4_slidedeck.pdf). 
+See full analysis in these following Jupyter Notebooks:
+- [Jupyter Notebook](./phase_4_code.ipynb) 
+- [Jupyter Notebook](./phase_4_code.ipynb)
+- [Jupyter Notebook](./phase_4_code.ipynb)
+- [Jupyter Notebook](./phase_4_code.ipynb)
+
+Or check out this [presentation](./phase_4_slidedeck.pdf). 
+
 For additional info, please contact:  
-Ramil Chaimongkolbutr at [ramil.ming@flatironschool.com](mailto:ramil.ming@flatironschool.com)  
-George Ferre at [georgeaferre@flatironschool.com](mailto:georgeaferre@flatironschool.com)  
-Aaron Cherry at [cherrya050@flatironschool.com](mailto:cherrya050@flatironschool.com)
+Ramil Chaimongkolbutr at [ramil.ming@gmail.com](mailto:ramil.ming@gmail.com)  
+
 
 ![Ending](./imgs/endinggif.gif)
 
@@ -113,7 +134,7 @@ Aaron Cherry at [cherrya050@flatironschool.com](mailto:cherrya050@flatironschool
 
 ```
 ├── data
-├── imgs
+├── images
 ├── notebooks
 ├── README.md
 ├── phase_4_slidedeck.pdf
