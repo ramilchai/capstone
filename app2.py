@@ -9,7 +9,7 @@ from surprise import Reader, Dataset
 from surprise.prediction_algorithms import SVD
 
 import nltk
-nltk.download('stopwords')
+#nltk.download('stopwords')
 
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
@@ -57,6 +57,7 @@ def transformDict(ent, userID=10000):
     return arr
 
 def getRec(user_rating, data):
+    b_id_list = [x['book_id'] for x in user_rating]
     reader = Reader()
     new_df = data.append(user_rating, ignore_index=True)
     new_data = Dataset.load_from_df(new_df, reader)
@@ -66,7 +67,8 @@ def getRec(user_rating, data):
 
     list_of_books = []
     for m_id in new_df['book_id'].unique():
-        list_of_books.append( (m_id,svd_final_model.predict(10000,m_id)[3]))
+        if m_id not in b_id_list:
+            list_of_books.append( (m_id,svd_final_model.predict(10000,m_id)[3]))
 
     ranked_books = sorted(list_of_books, key=lambda x:x[1], reverse=True)
     return ranked_books
@@ -132,7 +134,7 @@ def remove_html(text):
 if __name__=="__main__":
     show()
 
-    df = openFile('interact')
+    df = openFile('interact_df')
     library = openFile('lib_app')
     comics_lib = openFile('comics_lib')
     rand_book = openFile('random_app')
@@ -151,6 +153,7 @@ if choice == "Choose for me":
     num = st.sidebar.slider(label='How many books?', min_value=1, max_value=10, key="CFM_num")
     lib = rand_book.sample(num).reset_index()
     
+    
 
 else:
     st.sidebar.header(f'Hey, {u_name}! Let"s rate the books!')
@@ -158,7 +161,7 @@ else:
     select = st.sidebar.multiselect('Book Name(s)', book_name)
     num = len(select)
     lib = library[library['title'].isin(select)].drop_duplicates(subset=['title']).reset_index()
-
+   
 #######################################################
 # Page
 #######################################################
