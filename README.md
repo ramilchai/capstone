@@ -116,7 +116,7 @@ We take our finished recommendation system and implement it onto web app using S
  
 ## For More Information
 
-See full analysis in these following Jupyter Notebooks:
+See full analysis in these following Jupyter Notebooks(**Note** for reproductive purposes, the notebooks should be in this order):
 1. [recommendation_book](./recommendation_book.ipynb) 
 2. [ALS_model](./ALS_model.ipynb)
 3. [Surprise_Lib](./Surprise_Lib.ipynb)
@@ -133,13 +133,22 @@ Ramil Chaimongkolbutr at [ramil.ming@gmail.com](mailto:ramil.ming@gmail.com)
 ## Repository Structure
 
 ```
-├── data
-├── images
+├── data/                                                   <-----Create this folder and download all data
+├── images/
 ├── README.md
 ├── app2.py
+    ├── Profile
+    ├── setup.sh
+    ├── runtime.txt
+    ├── nltk.txt
+    ├── interact_df                                         <-----Pickle file used in the app
+    ├── comics_cleaned_description                          <-----Pickle file used in the app
+    ├── comics_lib                                          <-----Pickle file used in the app
+    ├── lib_app                                             <-----Pickle file used in the app
+    ├── random_app                                          <-----Pickle file used in the app
 ├── capstone_slidedeck.pdf
-├── recommendation_book.ipynb
-├── ALS_model.ipynb
-├── Surprise_Lib.ipynb
-├── Recom_function.ipynb
+├── recommendation_book.ipynb                               <-----Notebook no.1
+├── ALS_model.ipynb                                         <-----Notebook no.2
+├── Surprise_Lib.ipynb                                      <-----Notebook no.3
+├── Recom_function.ipynb                                    <-----Notebook no.4
 ```
