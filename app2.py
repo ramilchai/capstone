@@ -9,7 +9,7 @@ from surprise import Reader, Dataset
 from surprise.prediction_algorithms import SVD
 
 import nltk
-#nltk.download('stopwords')
+nltk.download('stopwords')
 
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
@@ -69,6 +69,8 @@ def getRec(user_rating, data):
     for m_id in new_df['book_id'].unique():
         if m_id not in b_id_list:
             list_of_books.append( (m_id,svd_final_model.predict(10000,m_id)[3]))
+        else:
+            continue
 
     ranked_books = sorted(list_of_books, key=lambda x:x[1], reverse=True)
     return ranked_books
@@ -92,16 +94,16 @@ def recommended_books(user_ratings, book_title_df, n):
             return rec_list
 
 def recommended_comics(arr, comics_df):
-        for idx, rec in enumerate(arr):
-            title = comics_df.loc[comics_df['book_id'] == int(rec)]
+    for idx, rec in enumerate(arr):
+        title = comics_df.loc[comics_df['book_id'] == int(rec)]
             
-            st.write('Recommendation #', str(idx+1), ': ', title['title'].values[0], '\n')
+        st.write('Recommendation #', str(idx+1), ': ', title['title'].values[0], '\n')
 
-            i = title['image_url'].values[0]
-            response = requests.get(i)
-            img = Image.open(BytesIO(response.content)).convert('RGB')
-            st.image(img)
-            st.write('***')
+        i = title['image_url'].values[0]
+        response = requests.get(i)
+        img = Image.open(BytesIO(response.content)).convert('RGB')
+        st.image(img)
+        st.write('***')
 
 # Function for removing NonAscii characters
 def _removeNonAscii(s):
