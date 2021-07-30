@@ -116,7 +116,7 @@ We take our finished recommendation system and implement it onto web app using S
  
 ## For More Information
 
-See full analysis in these following Jupyter Notebooks(**Note** for reproductive purposes, the notebooks should be in this order):
+See full analysis in these following Jupyter Notebooks(**Note:** for reproductive purposes, the notebooks should be in this order):
 1. [recommendation_book](./recommendation_book.ipynb) 
 2. [ALS_model](./ALS_model.ipynb)
 3. [Surprise_Lib](./Surprise_Lib.ipynb)
